@@ -33,9 +33,10 @@ class CreateProductsTable extends Migration
             $table->double('alert_quantity', 8, 2);
             $table->double('selling_price', 15, 2);
             $table->double('discount', 15, 2);
-            $table->integer('creator_user_id')->unsigned();
+            $table->boolean('is_active')->default(true);
+            $table->bigInteger('creator_user_id')->unsigned()->nullable();
             $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->integer('updator_user_id')->unsigned()->nullable();
+            $table->bigInteger('updator_user_id')->unsigned()->nullable();
             $table->foreign('updator_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();

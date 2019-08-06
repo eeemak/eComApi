@@ -20,9 +20,10 @@ class CreateUnitOfMeasurementsTable extends Migration
             $table->text('description')->nullable();
             $table->Integer('company_id')->unsigned()->nullable();
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
-            $table->integer('creator_user_id')->unsigned();
+            $table->boolean('is_active')->default(true);
+            $table->bigInteger('creator_user_id')->unsigned()->nullable();
             $table->foreign('creator_user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->integer('updator_user_id')->unsigned()->nullable();
+            $table->bigInteger('updator_user_id')->unsigned()->nullable();
             $table->foreign('updator_user_id')->references('id')->on('users')->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
